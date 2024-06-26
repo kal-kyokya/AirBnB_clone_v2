@@ -2,9 +2,9 @@
 
 This directory is home to all files and Sub-directories needed for successful completion of the 'MySQL' AirBnB_clone_v2 project provided by ALX Africa to its Software Engineering program.
 
-<h5> GENERAL REQUIREMENTS: </h5>
+<h3> GENERAL REQUIREMENTS: </h3>
 
-```(1) PYTHON SCRIPTS```
+<h5>PYTHON SCRIPTS</h5>
 
 	->	Allowed editors:
 		    vi, vim, emacs
@@ -27,7 +27,7 @@ This directory is home to all files and Sub-directories needed for successful co
 		     python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)'
 	->	A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
 
-```(2) PYTHON UNIT TESTS```
+<h5>PYTHON UNIT TESTS</h5>
 
 	->	Allowed editors:
 		    vi, vim, emacs
@@ -55,7 +55,7 @@ This directory is home to all files and Sub-directories needed for successful co
 		     python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)'
 	->	A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
 
-```(3) SQL Scripts```
+<h5>SQL Scripts</h5>
 
 	->	Allowed editors:
 			vi, vim, emacs
@@ -72,9 +72,9 @@ This directory is home to all files and Sub-directories needed for successful co
 	->	The length of files will be tested using:
 			wc
 
-```(4) EXECUTION```
+<h5>EXECUTION</h5>
 
-    IN INTERACTIVE MODE:
+IN INTERACTIVE MODE:
 
 	$ ./console.py
 	(hbnb) help
@@ -88,8 +88,7 @@ This directory is home to all files and Sub-directories needed for successful co
 	(hbnb) quit
 	$
 
-
-    IN NON-INTERACTIVE MODE:(like the Shell project in C)
+IN NON-INTERACTIVE MODE:(like the Shell project in C)
 
 	$ echo "help" | ./console.py
 	(hbnb)
@@ -111,7 +110,6 @@ This directory is home to all files and Sub-directories needed for successful co
 	(hbnb)
 	$
 
-
-    ALL TESTS SHOULD ALSO PASS IN NON-INTERACTIVE MODE:
+ALL TESTS SHOULD ALSO PASS IN NON-INTERACTIVE MODE:
 
 	$ echo "python3 -m unittest discover tests" | bash
