@@ -88,7 +88,7 @@ IN INTERACTIVE MODE:
 	(hbnb) quit
 	$
 
-IN NON-INTERACTIVE MODE:(like the Shell project in C)
+IN NON-INTERACTIVE MODE:
 
 	$ echo "help" | ./console.py
 	(hbnb)
