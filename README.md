@@ -2,9 +2,9 @@
 
 This directory is home to all files and Sub-directories needed for successful completion of the 'MySQL' AirBnB_clone_v2 project provided by ALX Africa to its Software Engineering program.
 
-## GENERAL REQUIREMENTS:
+<h3> GENERAL REQUIREMENTS: </h3>
 
-(1) PYTHON SCRIPTS
+```(1) PYTHON SCRIPTS```
 
 	->	Allowed editors:
 		    vi, vim, emacs
@@ -27,7 +27,7 @@ This directory is home to all files and Sub-directories needed for successful co
 		     python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)'
 	->	A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
 
-(2) PYTHON UNIT TESTS
+```(2) PYTHON UNIT TESTS```
 
 	->	Allowed editors:
 		    vi, vim, emacs
@@ -55,7 +55,24 @@ This directory is home to all files and Sub-directories needed for successful co
 		     python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)'
 	->	A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
 
-(3) EXECUTION
+```(3) SQL Scripts```
+
+	->	Allowed editors:
+			vi, vim, emacs
+	->	All files will be executed on:
+			Ubuntu 20.04 LTS
+				using:
+					MySQL 8.0 (version 8.0.25)
+	->	All files should end with a new line
+	->	All SQL queries should have a comment just before
+	->	All files should start by a comment describing the task
+	->	All SQL keywords should be in uppercase:
+			SELECT, WHERE…
+	->	A README.md file, at the root of the folder of the project, is mandatory
+	->	The length of files will be tested using:
+			wc
+
+```(4) EXECUTION```
 
     IN INTERACTIVE MODE:
 
