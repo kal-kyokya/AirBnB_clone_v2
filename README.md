@@ -2,7 +2,7 @@
 
 This directory is home to all files and Sub-directories needed for successful completion of the 'MySQL' AirBnB_clone_v2 project provided by ALX Africa to its Software Engineering program.
 
-<h3> GENERAL REQUIREMENTS: </h3>
+<h5> GENERAL REQUIREMENTS: </h5>
 
 ```(1) PYTHON SCRIPTS```
 
