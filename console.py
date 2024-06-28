@@ -127,7 +127,9 @@ class HBNBCommand(cmd.Cmd):
         if len(args) > 1:
             for kv in args[1:]:
                 key = kv.split('=')[0]
-                value = kv.split('=')[1].strip("\"")
+                value = kv.split('=')[1]
+                if value[0] == '\"':
+                    value = value.replace('_', ' ').strip("\"")
                 my_dict.update({key: value})
             new_instance.__dict__.update(my_dict)
 
