@@ -1,0 +1,16 @@
+-- Script preparing a MSQL server for the project
+
+-- Command creating the Database
+CREATE DATABASE
+IF NOT EXISTS `hbnb_dev_db`;
+
+-- Command setting the Database as 'in use'
+USE `hbnb_dev_db`;
+
+-- Command creating a User
+CREATE USER
+IF NOT EXISTS `hbnb_dev`@`localhost`
+IDENTIFIED BY `hbnb`;
+
+-- Commands granting privileges to user
+GRANT 
