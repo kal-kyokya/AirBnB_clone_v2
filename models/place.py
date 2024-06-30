@@ -7,6 +7,7 @@ from os import environ
 from models.amenity import Amenity
 
 
+"""
 metadata = Base.metadata
 
 place_amenity = Table('place_amenity', metadata,
@@ -18,7 +19,7 @@ place_amenity = Table('place_amenity', metadata,
                              String(60),
                              ForeignKey('amenities.id',
                                         ondelete='CASCADE')))
-
+"""
 
 class Place(BaseModel, Base):
     """This is the class for Place
@@ -63,7 +64,7 @@ class Place(BaseModel, Base):
                                  viewonly=False,
                                  passive_deletes=True)
 
-    if environ.get('HBNB_TYPE_STORAGE') != 'db':
+"""    if environ.get('HBNB_TYPE_STORAGE') != 'db':
         @property
         def reviews(self):
             return [review for review in storage.all(Review).values()
@@ -79,3 +80,4 @@ class Place(BaseModel, Base):
             if not isinstance(obj, Amenity):
                 return
             self.amenity_ids.append(obj.id)
+"""
