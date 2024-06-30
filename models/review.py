@@ -21,4 +21,3 @@ class Review(BaseModel, Base):
                                 ondelete='CASCADE'),
                      nullable=False)
     text = Column(String(1024), nullable=False)
-

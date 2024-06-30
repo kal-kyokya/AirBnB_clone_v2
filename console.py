@@ -73,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
                 my_att = attr.split('=')
                 try:
                     casted = HBNBCommand.verify_attribute(my_att[1])
-                except:
+                except Exception:
                     continue
                 if not casted:
                     continue
