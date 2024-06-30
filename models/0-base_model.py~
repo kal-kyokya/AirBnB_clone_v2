@@ -10,13 +10,13 @@ Base = declarative_base()
 
 class BaseModel:
     """A base class for all hbnb models"""
-
-    id = Column(String(60), primary_key=True)
-    create_at = Column(DateTime(), nullable=False)
-    updated_at = Column(DateTime(), nullable=False)
-
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
+
+        id = Column(String(60), primary_key=True)
+        create_at = Column(DateTime(), nullable=False)
+        updated_at = Column(DateTime(), nullable=False)
+
         if not kwargs:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -51,10 +51,16 @@ class BaseModel:
         dictionary.update({'__class__': value})
         dictionary['created_at'] = self.created_at.isoformat()
         dictionary['updated_at'] = self.updated_at.isoformat()
-        if "_sa_instance_state" in dictionary.keys():
-            del dictionary["_sa_instance_state"]
         return dictionary
 
-    def delete(self):
-        """Delete the current instance from storage."""
-        storage.delete(self)
+
+"""
+print(f"{type(dict()).__name__}")
+print(f"{type(dict())}")
+print((str(type(dict()))))
+print((str(type(dict())).split('.')[-1]))
+foo1 = (str(type(dict())).split('.')[-1]).split('\'')[0]
+foo = (str(type(dict())).split('.')[-1]).split('\'')[1]
+print(f"Here is {foo1}$")
+print(f"Here is {foo}")
+"""
