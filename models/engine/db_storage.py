@@ -19,10 +19,10 @@ class DBStorage():
     def __init__(self):
         """Initializes class instances' public attributes."""
         try:
-            user = os.getenv('HBNB_MYSQL_USER')
-            pwd = os.getenv('HBNB_MYSQL_PWD')
-            host = os.getenv('HBNB_MYSQL_HOST')
-            db = os.getenv('HBNB_MYSQL_DB')
+            user = os.environ.get('HBNB_MYSQL_USER')
+            pwd = os.environ.get('HBNB_MYSQL_PWD')
+            host = os.environ.get('HBNB_MYSQL_HOST')
+            db = os.environ.get('HBNB_MYSQL_DB')
 
             mandatory = [user, pwd, host, db]
             if not all(mandatory):
@@ -36,7 +36,7 @@ class DBStorage():
                     pool_pre_ping=True)
                 session_maker = sessionmaker(bind=eng)
                 DBStorage.__session = session_maker()
-                if os.getenv('HBNB_ENV') == 'test':
+                if os.environ.get('HBNB_ENV') == 'test':
                     Base.metadata.drop_all(bind=eng, checkfirst=True)
         except Exception as err:
             print("Raised an Exception during init:")
