@@ -5,7 +5,7 @@
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import BaseModel, Base
+from models.base_model import BaseModel, Base
 from models.user import User
 from models.place import Place
 from models.state import State
@@ -35,15 +35,14 @@ class DBStorage():
                 print("Ensure proper setting of environment variables.")
                 return
 
-            with DBStorage.__engine as eng:
-                eng = create_engine(
-                    "mysql+mysqldb://{}:{}@{}/{}".format(
-                        user, pwd, host, db),
-                    pool_pre_ping=True)
-                session_maker = sessionmaker(bind=eng)
-                DBStorage.__session = session_maker()
-                if os.getenv('HBNB_ENV') == 'test':
-                    Base.metadata.drop_all(bind=eng, checkfirst=True)
+            self.__engine = create_engine(
+                "mysql+mysqldb://{}:{}@{}/{}".format(
+                    user, pwd, host, db),
+                pool_pre_ping=True)
+            session_maker = sessionmaker(bind=self.__engine)
+            DBStorage.__session = session_maker()
+            if os.getenv('HBNB_ENV') == 'test':
+                Base.metadata.drop_all(bind=self.__engine, checkfirst=True)
         except Exception as err:
             print("Raised an Exception during init:")
             print(err)
@@ -95,10 +94,9 @@ class DBStorage():
         and 'scoped_session' to make the Session thread-safe.
         """
         try:
-            with self.engine as eng:
-                Base.metadata.create_all(eng)
-                session_maker = sessionmaker(eng, expire_on_commit=False)
-                session = session_maker()
+            Base.metadata.create_all(self.__engine)
+            session_maker = sessionmaker(self.__engine, expire_on_commit=False)
+            session = session_maker()
         except Exception as err:
             print("Exception raised during reload:")
             print(err)
