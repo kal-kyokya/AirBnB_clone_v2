@@ -61,11 +61,12 @@ class FileStorage:
         except FileNotFoundError:
             pass
 
-    def delete(self, obj):
+    def delete(self, obj=None):
         """ Removes an element from out object dictionary.
 
         Args:
             obj: Name of the object to be removed.
         """
-        key = obj.__class__.__name__ + "." + obj.id
-        del FileStorage.__objects[key]
+        if obj:
+            key = obj.__class__.__name__ + "." + obj.id
+            del FileStorage.__objects[key]
