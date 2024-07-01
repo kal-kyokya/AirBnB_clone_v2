@@ -4,7 +4,7 @@
 """
 import os
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import BaseModel, Base
 from models.user import User
 from models.place import Place
@@ -12,6 +12,7 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+import models
 
 
 class DBStorage():
@@ -35,12 +36,10 @@ class DBStorage():
                 print("Ensure proper setting of environment variables.")
                 return
 
-            self.__engine = create_engine(
-                "mysql+mysqldb://{}:{}@{}/{}".format(
-                    user, pwd, host, db),
-                pool_pre_ping=True)
-            session_maker = sessionmaker(bind=self.__engine)
-            DBStorage.__session = session_maker()
+            self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".
+                                          format(user, pwd, host, db),
+                                          pool_pre_ping=True)
+
             if os.getenv('HBNB_ENV') == 'test':
                 Base.metadata.drop_all(bind=self.__engine, checkfirst=True)
         except Exception as err:
@@ -53,17 +52,14 @@ class DBStorage():
         Arg:
             cls: Class name for all object to be retrieve.
         """
-        with DBStorage.__session as sess:
-            results = []
-            if cls:
-                results = sess.query(cls).all()
-            else:
-                for value in self.__classes:
-                    for obj in sess.query(value):
-                        results.append(obj)
-
-            return {"{}.{}".format(
-                obj.__class__.__name__, obj.id): obj for obj in results}
+        new_dict = {}
+        for class_value in self.__classes:
+            if cls is None or cls is class_value:
+                objs = self.__session.query(class_value).all()
+                for obj in objs:
+                    key = obj.__class__.__name__ + "." + obj.id
+                    new_dict[key] = obj
+        return (new_dict)
 
     def new(self, obj):
         """Adds an object to the current Database session.
@@ -86,17 +82,19 @@ class DBStorage():
             obj: Name of the object to be deleted.
         """
         if obj and self.__session:
-            session.delete(obj)
+            self.__session.delete(obj)
 
     def reload(self):
-        """Create all tables in the database and also
-        create the current database session using 'sessionmaker'
-        and 'scoped_session' to make the Session thread-safe.
-        """
+        """Reloads data from the database"""
         try:
             Base.metadata.create_all(self.__engine)
-            session_maker = sessionmaker(self.__engine, expire_on_commit=False)
-            session = session_maker()
+            session_factory = sessionmaker(self.__engine, expire_on_commit=False)
+            Session = scoped_session(session_factory)
+            self.__session = Session
         except Exception as err:
             print("Exception raised during reload:")
             print(err)
+
+    def close(self):
+        """Call remove() method on the class attribute 'session'."""
+        self.__session.remove()

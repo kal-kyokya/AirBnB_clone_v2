@@ -11,15 +11,19 @@ import os
 class State(BaseModel, Base):
     """ State class """
 
-    __tablename__ = "states"
-    name = Column(String(128), nullable=False)
-    cities = relationship("City", back_populates="state")
+    if models.storage.storage_t == "db":
+        __tablename__ = "states"
+        name = Column(String(128), nullable=False)
+        cities = relationship("City", backref="state")
+    else:
+        name = ""
 
-    if os.getenv('HBNB_TYPE_STORAGE') != 'db':
         @property
         def cities(self):
-            cities = []
-            for city in models.storage.all(City).values():
+            """Property Setter for list of city instance linked to state"""
+            target_cities = []
+            all_cities = models.storage.all(City)
+            for city in all_cities.values():
                 if city.state_id == self.id:
-                    cities.append(city)
-            return cities
+                    target_cities.append(city)
+            return target_cities
