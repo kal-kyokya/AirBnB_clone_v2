@@ -3,20 +3,25 @@
 import uuid
 from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, String, DateTime
+import models
+import os
 
-Base = declarative_base()
-
+if models.storage_t == "db":
+    Base = declarative_base()
+else:
+    Base = object
 
 class BaseModel:
     """A base class for all hbnb models"""
 
-    id = Column(String(60), primary_key=True)
-    create_at = Column(DateTime, nullable=False, default=datetime.utcnow())
-    updated_at = Column(DateTime, nullable=False, default=datetime.utcnow())
+    if models.storage_t == "db":
+        id = Column(String(60), primary_key=True)
+        create_at = Column(DateTime, nullable=False, default=datetime.utcnow())
+        updated_at = Column(DateTime, nullable=False, default=datetime.utcnow())
 
     def __init__(self, *args, **kwargs):
-        """Instatntiates a new model"""
+        """Instantiates a new model"""
         if not kwargs:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -37,11 +42,9 @@ class BaseModel:
 
     def save(self):
         """Updates 'updated_at' with current time when instance is changed"""
-        from models import storage
-
-        self.updated_at = datetime.now()
-        storage.new(self)
-        storage.save()
+        self.updated_at = datetime.utcnow()
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self):
         """Convert instance into dict format"""
@@ -51,10 +54,10 @@ class BaseModel:
         dictionary.update({'__class__': value})
         dictionary['created_at'] = self.created_at.isoformat()
         dictionary['updated_at'] = self.updated_at.isoformat()
-        if "_sa_instance_state" in dictionary.keys():
+        if "_sa_instance_state" in dictionary:
             del dictionary["_sa_instance_state"]
         return dictionary
 
     def delete(self):
         """Delete the current instance from storage."""
-        storage.delete(self)
+        models.storage.delete(self)
