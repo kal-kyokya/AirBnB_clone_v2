@@ -20,7 +20,7 @@ class State(BaseModel, Base):
 
         @property
         def cities(self):
-            """Property Setter for list of city instance linked to state"""
+            """Property Getter for list of city instance linked to state"""
             target_cities = []
             all_cities = models.storage.all(City)
             for city in all_cities.values():
