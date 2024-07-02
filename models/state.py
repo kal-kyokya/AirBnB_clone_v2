@@ -11,7 +11,7 @@ import os
 class State(BaseModel, Base):
     """ State class """
 
-    if models.storage.storage_t == "db":
+    if models.storage_t == "db":
         __tablename__ = "states"
         name = Column(String(128), nullable=False)
         cities = relationship("City", backref="state")

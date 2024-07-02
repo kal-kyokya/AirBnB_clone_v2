@@ -48,33 +48,33 @@ class Place(BaseModel, Base):
                                  cascade='all, delete',
                                  secondary=place_amenity,
                                  viewonly=False, passive_deletes=True)
-        else:
-            city_id = ""
-            user_id = ""
-            name = ""
-            description = ""
-            number_rooms = 0
-            number_bathrooms = 0
-            max_guest = 0
-            price_by_night = 0
-            latitude = 0.0
-            longitude = 0.0
-            amenity_ids = []
+    else:
+        city_id = ""
+        user_id = ""
+        name = ""
+        description = ""
+        number_rooms = 0
+        number_bathrooms = 0
+        max_guest = 0
+        price_by_night = 0
+        latitude = 0.0
+        longitude = 0.0
+        amenity_ids = []
 
-            @property
-            def reviews(self):
-                """Getter returning list of review instances"""
-                return [review for review in models.storage.all(
-                    Review).values() if review.place_id == self.id]
+        @property
+        def reviews(self):
+            """Getter returning list of review instances"""
+            return [review for review in models.storage.all(
+                Review).values() if review.place_id == self.id]
 
-            @property
-            def amenities(self):
-                """Getter returning list of Amenity instances"""
-                return [amenity for amenity in models.storage.all(
-                    Amenity).values() if amenity.place_id == self.id]
+        @property
+        def amenities(self):
+            """Getter returning list of Amenity instances"""
+            return [amenity for amenity in models.storage.all(
+                Amenity).values() if amenity.place_id == self.id]
 
-            @amenities.setter
-            def amenities(self, obj):
-                if not isinstance(obj, Amenity):
-                    return
-                self.amenity_ids.append(obj.id)
+        @amenities.setter
+        def amenities(self, obj):
+            if not isinstance(obj, Amenity):
+                return
+            self.amenity_ids.append(obj.id)
