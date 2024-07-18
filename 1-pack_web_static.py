@@ -14,7 +14,7 @@ def do_pack():
     Args:
         None.
     Return:
-    	The path to the created .tgz archive or None if error.
+        The path to the created .tgz archive or None if error.
     """
 
     dt = datetime.utcnow()
@@ -27,7 +27,7 @@ def do_pack():
     if os.path.isdir("versions") is False:
         if local("mkdir -p versions").failed is True:
             return None
-        
+
         if local("tar -cvzf {} web_static".format(file)).failed is True:
             return None
         return file
