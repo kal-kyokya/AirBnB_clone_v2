@@ -54,6 +54,8 @@ printf %s "server {
     }
 }" > /etc/nginx/sites-available/default
 
+sudo nginx -t
+
 sudo service nginx restart
 
 exit 0
