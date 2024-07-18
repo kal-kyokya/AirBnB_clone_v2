@@ -8,7 +8,7 @@ sudo apt-get -y install nginx
 sudo mkdir -p /data/web_static/releases/test
 sudo mkdir -p /data/web_static/shared
 
-sudo echo '
+echo '
 <!DOCTYPE html>
 <html>
   <head> Releases Test File </head>
