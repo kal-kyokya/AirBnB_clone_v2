@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
-'1-pack_web_static' is '.tgz archive' file creation script
-written in python to run using the 'fab' command.
+'1-pack_web_static': Python script Fabrics a '.tgz archive' file off of the web_static directory.
 """
 import os.path
 from datetime import datetime
