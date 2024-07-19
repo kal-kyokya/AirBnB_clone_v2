@@ -6,10 +6,8 @@ written in python to run using the 'fab' command.
 import os.path
 from datetime import datetime
 from fabric.api import local
-from fabric import task
 
 
-@task
 def do_pack():
     """Creates a tap archive file aka tar.
 
