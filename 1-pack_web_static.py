@@ -18,7 +18,7 @@ def do_pack():
     """
 
     dt = datetime.utcnow()
-    file = f'versions/web_static_{dt.strftime("%Y%B%d%I%M%s")}.tgz'
+    file = f'versions/web_static_{dt.strftime("%Y%m%d%I%M%S")}.tgz'
 
     if os.path.isdir("versions") is False:
         if local("mkdir -p versions").failed is True:
