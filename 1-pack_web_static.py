@@ -18,16 +18,12 @@ def do_pack():
     """
 
     dt = datetime.utcnow()
-    file = "versions/web_static_{}{}{}{}{}{}.tgz".format(dt.year,
-                                                         dt.month,
-                                                         dt.day,
-                                                         dt.hour,
-                                                         dt.minute,
-                                                         dt.second)
+    file = f'versions/web_static_{dt.strftime("%Y%B%d%I%M%s")}.tgz'
+
     if os.path.isdir("versions") is False:
         if local("mkdir -p versions").failed is True:
-            return None
-
+            return (None)
         if local("tar -cvzf {} web_static".format(file)).failed is True:
-            return None
-        return file
+            return (None)
+
+        return (file)
