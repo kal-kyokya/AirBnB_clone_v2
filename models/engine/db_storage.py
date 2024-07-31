@@ -44,6 +44,7 @@ class DBStorage():
                 Base.metadata.drop_all(bind=self.__engine, checkfirst=True)
         except Exception as err:
             print("Raised an Exception during init:")
+            print(type(err))
             print(err)
 
     def all(self, cls=None):
@@ -88,9 +89,8 @@ class DBStorage():
         """Reloads data from the database"""
         try:
             Base.metadata.create_all(self.__engine)
-            session_factory = sessionmaker(
-                self.__engine, expire_on_commit=False)
-            Session = scoped_session(session_factory)
+            sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+            Session = scoped_session(sess_factory)
             self.__session = Session
         except Exception as err:
             print("Exception raised during reload:")
