@@ -81,7 +81,7 @@ def number_template(num):
     Return:
         A command displaying an HTML page if input is an integer.
     """
-    return (render_template("number.html", number=num))
+    return (render_template("5-number.html", number=num))
 
 
 if __name__ == "__main__":
