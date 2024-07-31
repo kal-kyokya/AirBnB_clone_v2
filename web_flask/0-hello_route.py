@@ -8,6 +8,7 @@ from flask import Flask
 # Turn the current file into a Framework controller
 app = Flask(__name__)
 
+
 # Define actions ensuing access to the 'home page'
 @app.route("/", strict_slashes=False)
 def home():
