@@ -3,7 +3,7 @@
 '4-number_route' is a Flask web application starting module
 """
 # Import the Flask class from the flask module
-from flask import Flask
+from flask import Flask, render_template
 
 
 # Specify the current file as the web app controller
@@ -69,6 +69,18 @@ def number(num):
         A string text.
     """
     return (f"{num} is a number")
+
+@app.route("/number_template/<int:num>", strict_slashes=False)
+def number_template(num):
+    """Function for '/number_template/' with a URL integer input.
+
+    Arg:
+        num: URL integer Input to be used.
+
+    Return:
+        A command displaying an HTML page if input is an integer.
+    """
+    return (render_template("number.html", number=num))
 
 
 if __name__ == "__main__":
