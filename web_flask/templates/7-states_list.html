@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<HTML>
+  <HEAD>
+    <META charset="UTF-8">
+    <META name="viewport" content="width=device-width, initial-scale=1.0">
+    <TITLE> States list </TITLE>
+  </HEAD>
+  <BODY>
+    <H1> States </H1>
+    <UL>
+      {% for key in states.keys() %}
+      <LI>states.get('{{ key }}')</LI>
+      {% endfor %}
+    </UL>
+  </BODY>
+  
+</HTML>
