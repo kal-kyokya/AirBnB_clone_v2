@@ -89,8 +89,9 @@ class DBStorage():
         """Reloads data from the database"""
         try:
             Base.metadata.create_all(self.__engine)
-            sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
-            Session = scoped_session(sess_factory)
+            session_factory = sessionmaker(bind=self.__engine,
+                                           expire_on_commit=False)
+            Session = scoped_session(session_factory)
             self.__session = Session
         except Exception as err:
             print("Exception raised during reload:")
