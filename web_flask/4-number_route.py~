@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-'3-python_route' is a Flask web application starting module
+'4-number_route' is a Flask web application starting module
 """
 # Import the Flask class from the flask module
 from flask import Flask
@@ -33,10 +33,10 @@ def hbnb():
 
 @app.route("/c/<text>", strict_slashes=False)
 def c_text(text):
-    """Function used when the '/c/' route is used with a URL input text.
+    """Function used when the '/c/' route is used with a URL text input.
 
     Arg:
-        text: URL Input text to be used.
+        text: URL text Input to be used.
 
     Return:
         A string text.
@@ -44,17 +44,31 @@ def c_text(text):
     return ("C " + text.replace('_', ' '))
 
 
-@app.route("/python/<text>", strict_slashes=False, defaults={'text': "is cool"})
+@app.route("/python/", strict_slashes=False, defaults={'text': "is cool"})
+@app.route("/python/<text>", strict_slashes=False)
 def python_text(text):
-    """Function used when the '/python/' route is used with a URL input text.
+    """Function used when the '/python/' route is used with a URL  text input.
 
     Arg:
-        text: URL Input text to be used.
+        text: URL text Input to be used.
 
     Return:
         A string text.
     """
     return ("Python " + text.replace('_', ' '))
+
+
+@app.route("/number/<int:num>", strict_slashes=False)
+def number(num):
+    """Function for the '/number/' route with a URL integer input.
+
+    Arg:
+        num: URL integer Input to be used.
+
+    Return:
+        A string text.
+    """
+    return (f"{num} is a number")
 
 
 if __name__ == "__main__":
